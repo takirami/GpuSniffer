@@ -16,8 +16,9 @@ const proshop = async () => {
     const price = $("span.site-currency-lg", foo)
       .text()
       .replace("€", "")
+      .replace(/\s/g, "")
+      .replace(",", ".")
       .trim();
-    console.log(price.replace(" ", ""));
     const item = {
       store: "proshop",
       name: $("a.site-product-link h2", foo).text(),
