@@ -19,12 +19,22 @@ const jimms = async () => {
       const item = {
         store: "jimms",
         name: maker + " " + $(".p_name span", foo).text(),
-        price: $(".p_price span", foo).text(),
+        name: "https://www.jimms.fi/" + $(".p_name a", foo).attr("href"),
+
+        price: $(".p_price span", foo)
+          .text()
+          .replace("€", "")
+          .replace(/\s/g, "")
+          .replace(",", ".")
+          .trim(),
       };
       results.push(item);
     }
   });
-  return results;
+
+  return results.sort((a, b) => {
+    return a.price - b.price;
+  });
 };
 
 export default jimms;

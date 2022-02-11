@@ -22,12 +22,15 @@ const proshop = async () => {
     const item = {
       store: "proshop",
       name: $("a.site-product-link h2", foo).text(),
+      link:
+        "https://www.proshop.fi/" + $("a.site-product-link", foo).attr("href"),
       price,
     };
     results.push(item);
   });
-
-  return results;
+  return results.sort((a, b) => {
+    return a.price - b.price;
+  });
 };
 
 export default proshop;

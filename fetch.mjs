@@ -20,16 +20,21 @@ if (filtered.length > 0) {
   filtered.map((i) => {
     console.log(i.store);
     console.log(i.name);
-    console.log(i.price);
+    console.log(i.link);
+    console.log(`${i.price}€`);
+    console.log("-------------------------");
   });
 } else {
   console.log("-------------------------");
   console.log("--- NO LUCK THIS TIME ---");
 }
-
 console.log("-------------------------");
 console.log(`--- Parsed ${results.length} products in total`);
-console.log(`--- Verkkis: ${verkkisResults.length}`);
-console.log(`--- Jimms: ${jimmsResults.length}`);
-console.log(`--- Proshop: ${proshopResults.length}`);
+console.log(
+  `--- Verkkis: ${verkkisResults.length} (>= ${verkkisResults[0].price}€)`
+);
+console.log(`--- Jimms: ${jimmsResults.length} (>= ${jimmsResults[0].price}€)`);
+console.log(
+  `--- Proshop: ${proshopResults.length} (>= ${proshopResults[0].price}€)`
+);
 console.log("-------------------------");
