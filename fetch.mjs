@@ -6,12 +6,12 @@ import proshop from "./components/proshop.mjs";
 import verkkis from "./components/verkkis.mjs";
 
 const { argv } = yargs(process.argv);
-
+const max = argv.max ? argv.max : 1000;
+console.log(`:::::RUNNING GPU SNIFFER (<= ${max}€):::::`);
 const jimmsResults = await jimms();
 const verkkisResults = await verkkis();
 const proshopResults = await proshop();
 const datatronicResults = await datatronic();
-const max = argv.max ? argv.max : 1000;
 const results = jimmsResults.concat(
   verkkisResults,
   proshopResults,
