@@ -1,17 +1,22 @@
 #!/usr/bin/env node
-
 import yargs from "yargs";
-const { argv } = yargs(process.argv);
-
+import datatronic from "./components/datatronic.mjs";
 import jimms from "./components/jimms.mjs";
 import proshop from "./components/proshop.mjs";
 import verkkis from "./components/verkkis.mjs";
 
+const { argv } = yargs(process.argv);
+
 const jimmsResults = await jimms();
 const verkkisResults = await verkkis();
 const proshopResults = await proshop();
+const datatronicResults = await datatronic();
 const max = argv.max ? argv.max : 1000;
-const results = jimmsResults.concat(verkkisResults, proshopResults);
+const results = jimmsResults.concat(
+  verkkisResults,
+  proshopResults,
+  datatronicResults
+);
 const filtered = results.filter((i) => {
   const price = parseFloat(i.price.replace(/,/g, "."));
   return price < max;
@@ -31,10 +36,16 @@ if (filtered.length > 0) {
 console.log("-------------------------");
 console.log(`--- Parsed ${results.length} products in total`);
 console.log(
-  `--- Verkkis: ${verkkisResults.length} (>= ${verkkisResults[0].price}€)`
+  `--- Verkkis: ${verkkisResults.length} (>= ${
+    verkkisResults[0] ? verkkisResults[0].price : "Na"
+  }€)`
 );
 console.log(`--- Jimms: ${jimmsResults.length} (>= ${jimmsResults[0].price}€)`);
 console.log(
   `--- Proshop: ${proshopResults.length} (>= ${proshopResults[0].price}€)`
 );
+console.log(
+  `--- Datatronic: ${datatronicResults.length} (>= ${datatronicResults[0].price}€)`
+);
+
 console.log("-------------------------");
