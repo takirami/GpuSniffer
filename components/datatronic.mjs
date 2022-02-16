@@ -30,5 +30,4 @@ const datatronic = async () => {
     return a.price - b.price;
   });
 };
-datatronic();
 export default datatronic;
