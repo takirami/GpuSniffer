@@ -8,9 +8,17 @@
     "html",
     "vue"
   ],
+
   "diagnostic.infoSign": "ღ",
   "diagnostic.hintSign": "ஐ",
   "diagnostic.enable": true,
   "diagnostic.highlightOffset": 9999999,
-  "diagnostic.refreshOnInsertMode": true
+  "eslint.filetypes": [
+    "typescript",
+    "javascript"
+  ],
+  "eslint.run": "onSave",
+  "eslint.autoFixOnSave": true,
+  "diagnostic.refreshOnInsertMode": true,
+  "prettier.eslintIntegration": true
 }
