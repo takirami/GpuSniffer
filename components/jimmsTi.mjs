@@ -1,8 +1,10 @@
 import puppeteer from "puppeteer";
 import cheerio from "cheerio";
-const jimms = async () => {
+import {Spinner} from "cli-spinner";
+
+const jimmsTi = async () => {
   const url =
-    "https://www.jimms.fi/fi/Product/List/000-1TL/komponentit--naytonohjaimet--geforce-rtx-pelaamiseen--rtx-3060";
+    "https://www.jimms.fi/fi/Product/List/000-1T3/komponentit--naytonohjaimet--geforce-rtx-pelaamiseen--rtx-3060-ti";
   const browser = await puppeteer.launch({ headless: true });
   const page = await browser.newPage();
   await page.goto(url, { waitUntil: "networkidle0" });
@@ -18,7 +20,8 @@ const jimms = async () => {
       const item = {
         store: "jimms",
         name: maker + " " + $(".p_name span", foo).text(),
-        link: "https://www.jimms.fi/" + $(".p_name a", foo).attr("href"),
+        name: "https://www.jimms.fi/" + $(".p_name a", foo).attr("href"),
+
         price: $(".p_price span", foo)
           .text()
           .replace("€", "")
@@ -34,4 +37,4 @@ const jimms = async () => {
   });
 };
 
-export default jimms;
+export default jimmsTi;
