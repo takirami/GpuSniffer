@@ -52,11 +52,11 @@ const filtered = results.filter((i) => {
   }
   return price < max;
 });
-filtered.sort((a, b) => {
-    return b.price - a.price;
-  });
 
 if (filtered.length > 0) {
+  filtered.sort((a, b) => {
+    return b.price - a.price;
+  });
   filtered.map((i) => {
     console.log(i.store);
     console.log(i.name);
