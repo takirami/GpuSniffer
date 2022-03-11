@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 import { Spinner } from 'cli-spinner'
 import yargs from 'yargs'
+import BLACKLIST from './blacklist.js'
 import datatronic from './components/datatronic.mjs'
 import jimms from './components/jimms.mjs'
 import jimmsTi from './components/jimmsTi.mjs'
@@ -43,6 +44,12 @@ const combinedJimms = jimmsResults.concat(jimmsTiResults)
 const results = combinedJimms.concat(verkkisResults, proshopResults, datatronicResults)
 const filtered = results.filter((i) => {
   const price = parseFloat(i.price.replace(/,/g, '.'))
+  const blacklisted = BLACKLIST.some((word) => {
+    return i.name.includes(word)
+  })
+  if(blacklisted){
+    return false
+  }
   if (twelveGigs) {
     return i.name.includes('12G') && price < max
   }
