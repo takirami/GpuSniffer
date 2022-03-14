@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import chalk from 'chalk'
 import { Spinner } from 'cli-spinner'
 import datatronic from './components/datatronic.mjs'
 import jimms from './components/jimms.mjs'
@@ -8,13 +9,13 @@ import verkkis from './components/verkkis.mjs'
 
 export const fetchData = async () => {
   const loader = 18
-  let spinner = new Spinner('%s Fetching Jimms..')
+  let spinner = new Spinner(`%s Fetching ${chalk.green('Jimms')}..`)
 
   // Init spinner
   const stopStart = (string) => {
     spinner.stop()
     process.stdout.write('\n')
-    spinner = new Spinner(`%s Fetching ${string}..`)
+    spinner = new Spinner(`%s Fetching ${chalk.green(string)}..`)
     spinner.setSpinnerString(loader)
     spinner.start()
   }

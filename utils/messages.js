@@ -1,8 +1,9 @@
+import chalk from "chalk"
 export const printItem = (i) => {
     console.log(i.store)
     console.log(i.name)
-    console.log(i.link)
-    console.log(`${i.price}€`)
+    console.log(chalk.gray.underline(i.link))
+    console.log(chalk.red(`${i.price}€`))
     console.log('-------------------------')
 }
 
@@ -14,7 +15,7 @@ export const noLuckMessage = () => {
 export const storeResult = (name, storeResults) => {
 
 console.log(
-  `--- ${name}: ${storeResults.length} (>= ${
+  `--- ${chalk.green(name)}: ${storeResults.length} (>= ${
     storeResults[0] ? storeResults[0].price : 'Na'
   }€)`
 )

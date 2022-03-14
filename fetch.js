@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import chalk from 'chalk'
 import yargs from 'yargs'
 import BLACKLIST from './blacklist.js'
 import { fetchData } from './fetchData.js'
@@ -7,9 +8,9 @@ const { argv } = yargs(process.argv)
 
 const max = argv.max ? argv.max : 1000
 const twelveGigs = argv.twelve ? argv.twelve : false
-const twelveMessage = twelveGigs ? ' only 12GB' : ''
+const twelveMessage = twelveGigs ? ` only ${chalk.red('12GB')}` : ''
 
-console.log(`:::::RUNNING GPU SNIFFER (<= ${max}€${twelveMessage}):::::`)
+console.log(`:::::RUNNING GPU SNIFFER (<= ${chalk.red(max)}€${twelveMessage}):::::`)
 
 // Fetch Data
 const storeData = await fetchData()
