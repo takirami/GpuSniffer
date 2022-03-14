@@ -46,9 +46,18 @@ if (filtered.length > 0) {
     return b.price - a.price
   })
 
+  // Sort out color range prices
+  const lowest = filtered[filtered.length - 1].price
+  const highest = filtered[0].price
+  const diff = highest - lowest
+  const third = diff * 0.33333
+  const firstThird = parseFloat(lowest) + third
+  const secondThird = firstThird + third
+
   // Output formated result
   filtered.map((item) => {
-    printItem(item)
+    const color = item.price < firstThird ? 'green' : (item.price < secondThird ? 'yellow' : 'red')
+    printItem(item, color)
   })
 
 } else {

@@ -1,6 +1,6 @@
 import chalk from "chalk"
-export const printItem = (i) => {
-    console.log(`${chalk.red(i.price + '€')} | ${i.name} | ${chalk.blue(i.store)}`)
+export const printItem = (i, color) => {
+    console.log(`${chalk[color].bold(i.price + '€')} | ${i.name} | ${chalk.blue(i.store)}`)
     console.log(chalk.gray.underline(i.link))
     console.log('-------------------------')
 }
