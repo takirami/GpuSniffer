@@ -43,7 +43,6 @@ export const fetchData = async () => {
   spinner.stop()
   process.stdout.write('\n')
   console.log('-------------------------')
-  console.log('ᛃ ⎝storeData⎞', storeData)
   
   return storeData
 }
