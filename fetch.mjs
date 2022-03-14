@@ -7,6 +7,7 @@ import jimms from './components/jimms.mjs'
 import jimmsTi from './components/jimmsTi.mjs'
 import proshop from './components/proshop.mjs'
 import verkkis from './components/verkkis.mjs'
+import {noLuckMessage, printItem, storeResult} from './utils/messages.js'
 
 const { argv } = yargs(process.argv)
 const max = argv.max ? argv.max : 1000
@@ -17,6 +18,7 @@ console.log(`:::::RUNNING GPU SNIFFER (<= ${max}€${twelveMessage}):::::`)
 const loader = 18
 let spinner = new Spinner('%s Fetching Jimms..')
 
+// Init spinner
 const stopStart = (string) => {
   spinner.stop()
   process.stdout.write('\n')
@@ -28,6 +30,7 @@ const stopStart = (string) => {
 spinner.setSpinnerString(loader)
 spinner.start()
 
+// Fetch Data
 const jimmsResults = await jimms()
 const jimmsTiResults = await jimmsTi()
 stopStart('Verkkis')
@@ -40,6 +43,7 @@ spinner.stop()
 process.stdout.write('\n')
 console.log('-------------------------')
 
+// Process Data
 const combinedJimms = jimmsResults.concat(jimmsTiResults)
 const results = combinedJimms.concat(verkkisResults, proshopResults, datatronicResults)
 const filtered = results.filter((i) => {
@@ -61,25 +65,18 @@ if (filtered.length > 0) {
     return b.price - a.price
   })
   filtered.map((i) => {
-    console.log(i.store)
-    console.log(i.name)
-    console.log(i.link)
-    console.log(`${i.price}€`)
-    console.log('-------------------------')
+    // Output formated result
+    printItem(i)
   })
 } else {
-  console.log('-------------------------')
-  console.log('--- NO LUCK THIS TIME ---')
+  noLuckMessage()  
 }
 console.log('-------------------------')
 console.log(`--- Parsed ${results.length} products in total`)
-console.log(
-  `--- Verkkis: ${verkkisResults.length} (>= ${
-    verkkisResults[0] ? verkkisResults[0].price : 'Na'
-  }€)`
-)
-console.log(`--- Jimms: ${combinedJimms.length} (>= ${combinedJimms[0].price}€)`)
-console.log(`--- Proshop: ${proshopResults.length} (>= ${proshopResults[0].price}€)`)
-console.log(`--- Datatronic: ${datatronicResults.length} (>= ${datatronicResults[0].price}€)`)
+
+storeResult('Verkkis', verkkisResults)
+storeResult('Jimms', combinedJimms)
+storeResult('Proshop', proshopResults)
+storeResult('Datatronic', datatronicResults)
 
 console.log('-------------------------')
