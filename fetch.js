@@ -16,8 +16,8 @@ const storeData = await fetchData()
 
 // Process results
 const results = storeData.reduce((prev, current) => {
-    return prev.concat(current.data)
-  }, [])
+  return prev.concat(current.data)
+}, [])
 
 // Filter
 const filtered = results.filter((i) => {
