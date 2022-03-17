@@ -1,11 +1,11 @@
 #!/usr/bin/env node
 import chalk from 'chalk'
 import { Spinner } from 'cli-spinner'
-import datatronic from './components/datatronic.mjs'
-import jimms from './components/jimms.mjs'
-import jimmsTi from './components/jimmsTi.mjs'
-import proshop from './components/proshop.mjs'
-import verkkis from './components/verkkis.mjs'
+import datatronic from './components/datatronic.js'
+import jimms from './components/jimms.js'
+import jimmsTi from './components/jimmsTi.js'
+import proshop from './components/proshop.js'
+import verkkis from './components/verkkis.js'
 
 export const fetchData = async () => {
   const loader = 18
