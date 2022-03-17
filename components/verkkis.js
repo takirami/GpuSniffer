@@ -1,15 +1,8 @@
-import puppeteer from 'puppeteer'
 import cheerio from 'cheerio'
+import fetchHTML from '../utils/fetchHTML.js'
 
-const verkkis = async () => {
-  const url =
-    'https://www.verkkokauppa.com/fi/catalog/12149c/NVIDIA-GeForce-RTX-3060?sort=price%3Aasc&filter=ItemAdditionalInformationGraphicsProcessor%3AGeForce+RTX+3060&filter=AvailableImmediatelyAllChannels%3Aimmediately_shippable&filter=AvailableImmediatelyAllChannels%3Ajs&filter=ItemAdditionalInformationGraphicsProcessor%3AGeForce+RTX+3060+Ti'
-  const browser = await puppeteer.launch({ headless: true })
-  const page = await browser.newPage()
-  await page.goto(url, { waitUntil: 'networkidle0' })
-
-  const html = await page.content() // serialized HTML of page DOM.
-  await browser.close()
+const verkkis = async (url) => {
+  const html = await fetchHTML(url) // serialized HTML of page DOM.
   const $ = cheerio.load(html)
   let results = []
   $('.sc-uea85g-1').each((i, foo) => {

@@ -1,14 +1,8 @@
 import puppeteer from 'puppeteer'
 import cheerio from 'cheerio'
-const jimms = async () => {
-  const url =
-    'https://www.jimms.fi/fi/Product/List/000-1TL/komponentit--naytonohjaimet--geforce-rtx-pelaamiseen--rtx-3060'
-  const browser = await puppeteer.launch({ headless: true })
-  const page = await browser.newPage()
-  await page.goto(url, { waitUntil: 'networkidle0' })
-
-  const html = await page.content() // serialized HTML of page DOM.
-  await browser.close()
+import fetchHTML from '../utils/fetchHTML.js'
+const jimms = async (url) => {
+  const html = await fetchHTML(url)
   const $ = cheerio.load(html)
   let results = []
   $('.p_listTmpl1').each((i, foo) => {

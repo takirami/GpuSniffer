@@ -6,6 +6,7 @@ import jimms from './components/jimms.js'
 import jimmsTi from './components/jimmsTi.js'
 import proshop from './components/proshop.js'
 import verkkis from './components/verkkis.js'
+import {DATATRONIC_3060, JIMMS_3060, JIMMS_3060_TI, PROSHOP_3060, VERKKIS_3060_AND_TI} from './links.js'
 
 export const fetchData = async () => {
   const loader = 18
@@ -25,20 +26,20 @@ export const fetchData = async () => {
 
   // Fetch Data
   const storeData = []
-  const jimmsResults = await jimms()
-  const jimmsTiResults = await jimmsTi()
-  storeData.push({name: 'Jimms', data: jimmsResults.concat(jimmsTiResults)})
+  const jimms1 = await jimms(JIMMS_3060)
+  const jimms2 = await jimms(JIMMS_3060_TI)
+  storeData.push({name: 'Jimms', data: jimms1.concat(jimms2)})
 
   stopStart('Verkkis')
-  const verkkisResults = await verkkis()
+  const verkkisResults = await verkkis(VERKKIS_3060_AND_TI)
   storeData.push({name: 'Verkkis', data: verkkisResults})
 
   stopStart('Proshop')
-  const proshopResults = await proshop()
+  const proshopResults = await proshop(PROSHOP_3060)
   storeData.push({name: 'Proshop', data: proshopResults})
 
   stopStart('Datatronic')
-  const datatronicResults = await datatronic()
+  const datatronicResults = await datatronic(DATATRONIC_3060)
   storeData.push({name: 'Datatronic', data: datatronicResults})
   spinner.stop()
   process.stdout.write('\n')

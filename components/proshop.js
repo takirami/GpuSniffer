@@ -1,15 +1,8 @@
-import puppeteer from 'puppeteer'
 import cheerio from 'cheerio'
+import fetchHTML from '../utils/fetchHTML.js'
 
-const proshop = async () => {
-  const url =
-    'https://www.proshop.fi/Naeytoenohjaimet?inv=1&o=1028&pre=0&f~grafikkort_videoudganggrafikprocessorleverandor=nvidia-geforce-rtx-3060~nvidia-geforce-rtx-3060-ti'
-  const browser = await puppeteer.launch({ headless: true })
-  const page = await browser.newPage()
-  await page.goto(url, { waitUntil: 'networkidle0' })
-
-  const html = await page.content() // serialized HTML of page DOM.
-  await browser.close()
+const proshop = async (url) => {
+  const html = await fetchHTML(url) 
   const $ = cheerio.load(html)
   let results = []
   $('#products li.toggle').each((i, foo) => {
