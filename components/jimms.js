@@ -1,4 +1,3 @@
-import puppeteer from 'puppeteer'
 import cheerio from 'cheerio'
 import fetchHTML from '../utils/fetchHTML.js'
 const jimms = async (url) => {
