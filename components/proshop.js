@@ -12,6 +12,8 @@ const proshop = async (url) => {
       .replace(/\s/g, '')
       .replace(',', '.')
       .trim()
+    if(price === '') return
+
     const item = {
       store: 'proshop',
       name: $('a.site-product-link h2', foo).text(),
