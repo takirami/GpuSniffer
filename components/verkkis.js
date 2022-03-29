@@ -9,7 +9,7 @@ const verkkis = async (url) => {
     const item = {
       store: 'verkkis',
       name: $('a.Box-sc-eb7m1u-0', foo).text(),
-      link: 'https://www.verkkokauppa.com/' + $('a.Box-sc-eb7m1u-0', foo).attr('href'),
+      link: 'https://www.verkkokauppa.com' + $('a.Box-sc-eb7m1u-0', foo).attr('href'),
       price: $('data.CurrentData-sc-1eckydb-0', foo)
         .text()
         .replace('€', '')
