@@ -1,6 +1,11 @@
 import chalk from "chalk"
+
+const tiStrings = ['TI', 'Ti', ' ti ']
+
 export const printItem = (i, color) => {
-    console.log(`${chalk[color].bold(i.price + '€')} | ${i.name} | ${chalk.blue(i.store)}`)
+    const name = tiStrings.some((ti) => i.name.includes(ti)) ? `${chalk.green(i.name)}` : i.name
+
+    console.log(`${chalk[color].bold(i.price + '€')} | ${name} | ${chalk.blue(i.store)}`)
     console.log(chalk.gray.underline(i.link))
     console.log('-------------------------')
 }
