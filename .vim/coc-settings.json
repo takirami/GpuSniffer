@@ -1,24 +1,14 @@
+
 {
   "coc.preferences.formatOnType": true,
   "coc.preferences.formatOnSaveFiletypes": [
     "javascript",
-    "javascriptreact",
-    "typescript",
-    "typescriptreact",
     "html",
-    "vue"
   ],
-
   "diagnostic.infoSign": "ღ",
+  "eslint.enable": true,
   "diagnostic.hintSign": "ஐ",
   "diagnostic.enable": true,
   "diagnostic.highlightOffset": 9999999,
-  "eslint.filetypes": [
-    "typescript",
-    "javascript"
-  ],
-  "eslint.run": "onSave",
-  "eslint.autoFixOnSave": true,
   "diagnostic.refreshOnInsertMode": true,
-  "prettier.eslintIntegration": true
 }
