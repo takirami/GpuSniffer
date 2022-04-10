@@ -24,22 +24,24 @@ const filtered = await filterData(results, max, twelveGigs)
 
 if (filtered.length > 0) {
   // Sort by price
-  filtered.sort((a, b) => {
-    return b.price - a.price
-  })
-
-  // Sort out color range prices
-  const lowest = filtered[filtered.length - 1].price
-  const highest = filtered[0].price
-  const diff = highest - lowest
-  const third = diff * 0.33333
-  const firstThird = parseFloat(lowest) + third
-  const secondThird = firstThird + third
 
   // Output formated result
-  filtered.map((item) => {
-    const color = item.price < firstThird ? 'green' : item.price < secondThird ? 'yellow' : 'red'
-    printItem(item, color)
+  filtered.map((set) => {
+    console.log(`****************************************`)
+    console.log(`* ${chalk.green(set[0].model)} *********************************`)
+    console.log(`****************************************`)
+    // Sort out color range prices
+    const lowest = set[set.length - 1].price
+    const highest = set[0].price
+    const diff = highest - lowest
+    const third = diff * 0.33333
+    const firstThird = parseFloat(lowest) + third
+    const secondThird = firstThird + third
+
+    set.map((item) => {
+      const color = item.price < firstThird ? 'green' : item.price < secondThird ? 'yellow' : 'red'
+      printItem(item, color)
+    })
   })
 } else {
   noLuckMessage()
