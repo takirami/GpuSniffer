@@ -1,4 +1,5 @@
 import cheerio from 'cheerio'
+import { model } from '../utils/categories.js'
 import fetchHTML from '../utils/fetchHTML.js'
 
 const verkkis = async (url) => {
@@ -6,9 +7,11 @@ const verkkis = async (url) => {
   const $ = cheerio.load(html)
   let results = []
   $('.sc-uea85g-1').each((i, foo) => {
+    const name = $('a.Box-sc-eb7m1u-0', foo).text()
     const item = {
       store: 'verkkis',
-      name: $('a.Box-sc-eb7m1u-0', foo).text(),
+      name: name,
+      model: model(name),
       link: 'https://www.verkkokauppa.com' + $('a.Box-sc-eb7m1u-0', foo).attr('href'),
       price: $('data.CurrentData-sc-1eckydb-0', foo)
         .text()

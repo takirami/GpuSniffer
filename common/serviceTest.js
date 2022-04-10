@@ -10,25 +10,28 @@ export const commonFetcherTest = (name, scrapeFunction, url) => {
         expect(testData).not.toHaveLength(0)
       })
     })
-    test('Test that array has been provided', () => {
+    test('array should gave length', () => {
       expect(testData).not.toHaveLength(0)
     })
-    test('price is a string', () => {
+    test('price should be a string', () => {
       expect(typeof testData[0].price).toBe('string')
     })
-    test('price is not empty', () => {
+    test('price should not be empty', () => {
       expect(testData[0].price).not.toBe('')
     })
-    test('name is string', () => {
+    test('name should be string', () => {
       expect(typeof testData[0].name).toBe('string')
     })
-    test('name is not empty', () => {
+    test('model should be string', () => {
+      expect(typeof testData[0].model).toBe('string')
+    })
+    test('name should not be empty', () => {
       expect(testData[0].name).not.toBe('')
     })
-    test('link is string', () => {
+    test('link should be string', () => {
       expect(typeof testData[0].name).toBe('string')
     })
-    test('link is not empty', () => {
+    test('link should not be empty', () => {
       expect(testData[0].name).not.toBe('')
     })
   })

@@ -1,4 +1,5 @@
 import cheerio from 'cheerio'
+import { model } from '../utils/categories.js'
 import fetchHTML from '../utils/fetchHTML.js'
 
 const datatronic = async (url) => {
@@ -6,9 +7,11 @@ const datatronic = async (url) => {
   const $ = cheerio.load(html)
   let results = []
   $('#products .product-miniature').each((i, foo) => {
+    const name = $('.product-title a', foo).text()
     const item = {
       store: 'datatronic',
-      name: $('.product-title a', foo).text(),
+      name: name,
+      model: model(name),
       link: $('.product-title a', foo).attr('href'),
       price: $('.price', foo)
         .text()
