@@ -1,7 +1,2 @@
-
-const BLACKLIST = [
-  'StormX',
-  '*DEMO*',
-  '(B-Stock)'
-]
+const BLACKLIST = ['StormX', '*DEMO*', '(B-Stock)', 'mini', 'MINI', 'Mini']
 export default BLACKLIST
