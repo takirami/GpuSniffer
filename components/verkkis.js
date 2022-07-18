@@ -6,7 +6,7 @@ const verkkis = async (url) => {
   const html = await fetchHTML(url) // serialized HTML of page DOM.
   const $ = cheerio.load(html)
   let results = []
-  $('.sc-uea85g-1').each((i, foo) => {
+  $('.sc-1p6yk7n-1').each((i, foo) => {
     const name = $('a.Box-sc-eb7m1u-0', foo).text()
     const item = {
       store: 'verkkis',
