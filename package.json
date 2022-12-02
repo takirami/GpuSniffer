@@ -8,7 +8,8 @@
     "verbose": true
   },
   "scripts": {
-    "test": "node --experimental-vm-modules ./node_modules/.bin/jest"
+    "test": "node --experimental-vm-modules ./node_modules/.bin/jest",
+    "lint": "yarn eslint *.js utils components common"
   },
   "dependencies": {
     "body-parser": "^1.19.1",
